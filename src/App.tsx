@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Person from './components/Icons/Person';
+import PersonFrame from './components/Icons/PersonFrame';
+import Wrench from './components/Icons/Wrench';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <>
+      <header className='header'>
+        <a href='./' className='header__logo'>
+          <Wrench />
+          <h1 className='header__logo-text'>Wrench CRM</h1>
         </a>
+        <div className='header__menu'>
+          <div className='header__user'>
+            <div className='header__user-icon'>
+              <PersonFrame />
+            </div>
+            <span className='header__user-name'>Имя</span>
+            <span className='header__user-surname'>&nbsp;Фамилия</span>
+          </div>
+        </div>
       </header>
-    </div>
+      <main className='main'></main>
+      <menu className='menu'></menu>
+    </>
   );
-}
+};
 
 export default App;
