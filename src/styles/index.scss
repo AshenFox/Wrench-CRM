@@ -33,7 +33,7 @@ html {
 body {
   margin: 0;
   font-size: 1.5rem;
-  //   color: $text-color;
+  color: $dark-text-color;
   width: 100%;
   height: 100%;
   overflow-x: hidden !important;
@@ -69,8 +69,12 @@ input {
   }
 }
 
+// ========= Header =========
+
 .header {
   height: 8rem;
+
+  width: 100%;
   background-color: $main-color;
 
   display: flex;
@@ -101,15 +105,11 @@ input {
   }
 
   &__menu {
-    // flex-grow: 1;
-    // display: flex;
   }
 
   &__user {
     display: flex;
     align-items: center;
-
-    // width: 20rem;
 
     svg {
       width: 2rem;
@@ -137,4 +137,77 @@ input {
     font-weight: 700;
     color: $light-text-color;
   }
+}
+
+.container {
+  height: calc(100vh - 8rem);
+  display: flex;
+}
+
+.menu,
+.main {
+  height: 100%;
+  overflow-y: auto;
+}
+
+// ========= Menu =========
+
+.menu {
+  width: 30rem;
+  // background-color: red;
+  box-shadow: 0px 0px 5px 0px rgba(#020060, 0.25);
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-0%);
+    width: 100%;
+    margin-top: 8rem;
+    // background-color: green;
+  }
+
+  &__header {
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 2.4rem 2rem 1.2rem 3.2rem;
+    line-height: 2.4rem;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    padding: 2rem;
+    padding-left: 1.6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    svg {
+      height: 3.2rem;
+      fill: $dark-text-color;
+    }
+  }
+
+  &__item-icon {
+    width: 6.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item-title {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+}
+
+// ========= Main =========
+
+.main {
+  flex: 1;
+
+  // background-color: green;
 }
