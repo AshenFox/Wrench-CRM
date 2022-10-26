@@ -145,7 +145,7 @@ input {
 }
 
 .menu,
-.main {
+.page {
   height: 100%;
   overflow-y: auto;
 }
@@ -204,9 +204,9 @@ input {
   }
 }
 
-// ========= Main =========
+// ========= Page =========
 
-.main {
+.page {
   flex: 1;
 
   // background-color: green;
