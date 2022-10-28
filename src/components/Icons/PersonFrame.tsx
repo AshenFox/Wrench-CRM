@@ -4,7 +4,7 @@ interface OwnProps {}
 
 type Props = OwnProps;
 
-const PersonSmall: FC<Props> = () => {
+const PersonFrame: FC<Props> = () => {
   return (
     <svg viewBox='0 0 22 25' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
@@ -21,4 +21,4 @@ const PersonSmall: FC<Props> = () => {
   );
 };
 
-export default PersonSmall;
+export default PersonFrame;

@@ -1,0 +1,58 @@
+.searchbar {
+  display: flex;
+  margin-bottom: 3.4rem;
+
+  @media (max-width: $tablet) {
+    flex-direction: column;
+  }
+
+  &__input {
+    height: 7rem;
+    font-size: 2rem;
+    font-weight: 500;
+
+    border-radius: 10px;
+    border: solid 3px $main-color;
+    padding: 0 2.4rem;
+
+    margin-right: 2.4rem;
+
+    .error {
+      border-color: red;
+    }
+
+    @media (max-width: $tablet) {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__btn {
+    @include btn;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.9rem 4rem;
+
+    border-radius: 10px;
+
+    background-color: $main-color;
+
+    width: max-content;
+
+    svg {
+      fill: $light-text-color;
+      width: 3.2rem;
+      margin-right: 1.6rem;
+    }
+    span {
+      color: $light-text-color;
+      font-size: 2.6rem;
+      font-weight: 700;
+    }
+  }
+}

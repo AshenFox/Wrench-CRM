@@ -1,0 +1,50 @@
+.page {
+  position: relative;
+  flex: 1;
+
+  padding: 3.2rem;
+
+  // background-color: green;
+
+  @media (max-width: $tablet) {
+    padding: 2rem;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    top: 11.6rem;
+    right: 0;
+
+    background: $main-color;
+
+    border-radius: 5px;
+    width: 6px;
+    height: 12.7rem;
+
+    transition: all 0.2s ease-in-out;
+    transform: translateX(40%);
+  }
+
+  &.active {
+    &::after {
+      transform: translate(40%);
+    }
+  }
+
+  &__header {
+    font-weight: 700;
+    font-size: 2.6rem;
+    line-height: 3.2rem;
+  }
+
+  &__info {
+    display: inline-block;
+    margin-top: 1.6rem;
+    margin-bottom: 2.4rem;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}
