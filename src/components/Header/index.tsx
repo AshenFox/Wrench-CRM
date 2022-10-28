@@ -2,14 +2,14 @@ import { FC, useState } from 'react';
 import Wrench from '../Icons/Wrench';
 import PersonFrame from '../Icons/PersonFrame';
 
-interface OwnProps {}
+interface OwnProps {
+  isMenuOpen: boolean;
+  onClick: () => void;
+}
 
 type Props = OwnProps;
 
-const Header: FC<Props> = () => {
-  const [active, setActive] = useState(false);
-
-  const hamClick = () => setActive(!active);
+const Header: FC<Props> = ({ isMenuOpen, onClick }) => {
   // ??????/
   return (
     <header className='header'>
@@ -25,7 +25,7 @@ const Header: FC<Props> = () => {
           <span className='header__user-name'>Имя</span>
           <span className='header__user-surname'>&nbsp;Фамилия</span>
         </div>
-        <button onClick={hamClick} className={`header__ham ${active ? 'active' : ''}`}>
+        <button onClick={onClick} className={`header__ham ${isMenuOpen ? 'active' : ''}`}>
           <div></div>
           <div></div>
           <div></div>

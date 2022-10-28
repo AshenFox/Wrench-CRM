@@ -10,6 +10,9 @@
 
   padding: 0 3.2rem;
 
+  position: relative;
+  z-index: 2000;
+
   @media (max-width: $tablet) {
     padding: 0 2rem;
   }

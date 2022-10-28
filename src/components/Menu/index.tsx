@@ -1,107 +1,78 @@
 import { FC } from 'react';
-import Calender from '../Icons/Calender';
-import CogWheel from '../Icons/CogWheel';
-import Exit from '../Icons/Exit';
-import House from '../Icons/House';
-import MagnifyingGlass from '../Icons/MagnifyingGlass';
-import MapPoint from '../Icons/MapPoint';
-import Person from '../Icons/Person';
-import Tables from '../Icons/Tables';
-import Telephone from '../Icons/Telephone';
-import Triangle from '../Icons/Triangle';
-import TV from '../Icons/TV';
+import { IconType } from '../Icons';
+import Item from './Item';
 
-interface OwnProps {}
+interface OwnProps {
+  isMenuOpen: boolean;
+  onClick: () => void;
+}
 
 type Props = OwnProps;
 
-const Menu: FC<Props> = () => {
+interface RouteType {
+  title: string;
+  icon: IconType;
+  to?: string;
+  children?: RoutesMapType;
+}
+
+type RoutesMapType = RouteType[];
+
+const routesMap: RoutesMapType = [
+  {
+    title: 'Главная',
+    icon: 'house',
+    to: '/',
+  },
+  { title: 'Поиск адресов', icon: 'magnifying_glass', to: '/address' },
+  { title: 'Таблицы', icon: 'tables', to: '/tables' },
+  { title: 'Календарь', icon: 'calender', to: '/calender' },
+  { title: 'Карты', icon: 'map_point', to: '/maps' },
+  { title: 'Виджеты', icon: 'tv', to: '/vidgets' },
+  {
+    title: 'Настройки',
+    icon: 'cog_wheel',
+    children: [
+      { title: 'Настройки профиля', icon: 'person', to: '/profile-settings' },
+      { title: 'Управление финансами', icon: 'telephone', to: '/finaces-control' },
+    ],
+  },
+];
+
+const Menu: FC<Props> = ({ isMenuOpen, onClick }) => {
+  const mapRoutes = (routesMap: RoutesMapType) =>
+    routesMap.map((route) => {
+      const { title, icon, to, children } = route;
+
+      if (!children)
+        return <Item key={title} title={title} icon={icon} to={to} onClick={onClick} />;
+
+      return (
+        <Item key={title} title={title} icon={icon} to={to} onClick={onClick}>
+          {mapRoutes(children)}
+        </Item>
+      );
+    });
+
   return (
-    <menu className='menu'>
+    <menu className={`menu ${isMenuOpen ? 'active' : ''}`}>
       <h3 className='menu__header'>Меню</h3>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <House />
-          </div>
-          <span className='menu__item-title'>Главная</span>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <MagnifyingGlass />
-          </div>
-          <span className='menu__item-title'>Поиск адресов</span>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <Tables />
-          </div>
-          <span className='menu__item-title'>Таблицы</span>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <Calender />
-          </div>
-          <span className='menu__item-title'>Календарь</span>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <MapPoint />
-          </div>
-          <span className='menu__item-title'>Карты</span>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <TV />
-          </div>
-          <span className='menu__item-title'>Виджеты</span>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <CogWheel />
-          </div>
-          <span className='menu__item-title'>Настройки</span>
-          <div className='menu__sub-arrow'>
-            <Triangle />
-          </div>
-        </div>
-        <div className='menu__sub'>
-          <div className='menu__item-inner active'>
-            <div className='menu__item-icon'>
-              <Person />
-            </div>
-            <span className='menu__item-title'>Настройки профиля</span>
-          </div>
-          <div className='menu__item-inner'>
-            <div className='menu__item-icon'>
-              <Telephone />
-            </div>
-            <span className='menu__item-title'>Управление финансами</span>
-          </div>
-        </div>
-      </div>
-      <div className='menu__item'>
-        <div className='menu__item-inner'>
-          <div className='menu__item-icon'>
-            <Exit />
-          </div>
-          <span className='menu__item-title'>Выход</span>
-        </div>
-      </div>
+
+      {mapRoutes(routesMap)}
+      <Item title='Выход' icon='exit' onClick={onClick} />
     </menu>
   );
 };
 
 export default Menu;
+
+/* <Item title='Главная' icon='house' to='/' />
+      <Item title='Поиск адресов' icon='magnifying_glass' to='/address' />
+      <Item title='Таблицы' icon='tables' />
+      <Item title='Календарь' icon='calender' />
+      <Item title='Карты' icon='map_point' />
+      <Item title='Виджеты' icon='tv' />
+      <Item title='Настройки' icon='cog_wheel'>
+        <Item title='Настройки профиля' icon='person' />
+        <Item title='Управление финансами' icon='telephone' />
+      </Item> */
