@@ -16,7 +16,7 @@ const Header: FC<Props> = () => {
 
   return (
     <header className='header'>
-      <a href='./' className='header__logo'>
+      <a href='/Wrench-CRM' className='header__logo'>
         <Wrench />
         <span className='header__logo-text'>Wrench CRM</span>
       </a>

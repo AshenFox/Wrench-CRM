@@ -15,7 +15,7 @@ type Props = OwnProps;
 const App: FC<Props> = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename='/Wrench-CRM'>
         <Header />
         <div className='container'>
           <Menu />
