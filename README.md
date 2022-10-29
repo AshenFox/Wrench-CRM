@@ -1,4 +1,4 @@
-Посмотреть проект можно по ссылке - [Wrench CRM](https://fox-flash-cards.herokuapp.com/)
+Посмотреть проект можно по ссылке - [Wrench CRM](https://ashenfox.github.io/Wrench-CRM/)
 
 # Wrench CRM
 
