@@ -1,13 +1,7 @@
 import { FC } from 'react';
+import { useAppSelector } from '../../store/hooks';
 import { IconType } from '../Icons';
 import Item from './Item';
-
-interface OwnProps {
-  isMenuOpen: boolean;
-  onClick: () => void;
-}
-
-type Props = OwnProps;
 
 interface RouteType {
   title: string;
@@ -39,40 +33,33 @@ const routesMap: RoutesMapType = [
   },
 ];
 
-const Menu: FC<Props> = ({ isMenuOpen, onClick }) => {
+interface OwnProps {}
+
+type Props = OwnProps;
+
+const Menu: FC<Props> = () => {
+  const { is_menu_open } = useAppSelector(({ main }) => main);
+
   const mapRoutes = (routesMap: RoutesMapType) =>
     routesMap.map((route) => {
       const { title, icon, to, children } = route;
 
-      if (!children)
-        return <Item key={title} title={title} icon={icon} to={to} onClick={onClick} />;
+      if (!children) return <Item key={title} title={title} icon={icon} to={to} />;
 
       return (
-        <Item key={title} title={title} icon={icon} to={to} onClick={onClick}>
+        <Item key={title} title={title} icon={icon} to={to}>
           {mapRoutes(children)}
         </Item>
       );
     });
 
   return (
-    <menu className={`menu ${isMenuOpen ? 'active' : ''}`}>
+    <menu className={`menu ${is_menu_open ? 'active' : ''}`}>
       <h3 className='menu__header'>Меню</h3>
-
       {mapRoutes(routesMap)}
-      <Item title='Выход' icon='exit' onClick={onClick} />
+      <Item title='Выход' icon='exit' />
     </menu>
   );
 };
 
 export default Menu;
-
-/* <Item title='Главная' icon='house' to='/' />
-      <Item title='Поиск адресов' icon='magnifying_glass' to='/address' />
-      <Item title='Таблицы' icon='tables' />
-      <Item title='Календарь' icon='calender' />
-      <Item title='Карты' icon='map_point' />
-      <Item title='Виджеты' icon='tv' />
-      <Item title='Настройки' icon='cog_wheel'>
-        <Item title='Настройки профиля' icon='person' />
-        <Item title='Управление финансами' icon='telephone' />
-      </Item> */

@@ -1,19 +1,21 @@
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState, MouseEventHandler } from 'react';
 import Icons, { IconType } from '../Icons';
 import { Link, useLocation } from 'react-router-dom';
+import { useActions } from '../../store/hooks';
 
 interface OwnProps {
   icon: IconType;
   title: string;
   to?: string;
   children?: ReactNode;
-  onClick: () => void;
 }
 
 type Props = OwnProps;
 
-const Item: FC<Props> = ({ children, icon, title, to = '#', onClick }) => {
+const Item: FC<Props> = ({ children, icon, title, to = '#' }) => {
   const Icon = Icons[icon];
+
+  const { set_is_menu_open } = useActions();
 
   const { pathname } = useLocation();
 
@@ -21,11 +23,11 @@ const Item: FC<Props> = ({ children, icon, title, to = '#', onClick }) => {
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
-  const onItemClick = () => {
+  const onItemClick: MouseEventHandler<HTMLDivElement> = (e) => {
     if (children) {
       setIsSubMenuOpen(!isSubMenuOpen);
     } else {
-      onClick();
+      set_is_menu_open(false);
     }
   };
 

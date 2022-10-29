@@ -5,33 +5,27 @@ import { FC } from 'react';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Address from './pages/Address';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 interface OwnProps {}
 
 type Props = OwnProps;
 
 const App: FC<Props> = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
   return (
-    <BrowserRouter>
-      <Header isMenuOpen={isMenuOpen} onClick={toggleMenu} />
-      <div className='container'>
-        <Menu isMenuOpen={isMenuOpen} onClick={closeMenu} />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/address' element={<Address />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Header />
+        <div className='container'>
+          <Menu />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/address' element={<Address />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

@@ -4,8 +4,6 @@
 
   padding: 3.2rem;
 
-  // background-color: green;
-
   @media (max-width: $tablet) {
     padding: 2rem;
   }
@@ -13,6 +11,7 @@
   &::after {
     content: '';
     position: absolute;
+    display: none;
 
     top: 11.6rem;
     right: 0;
@@ -27,8 +26,9 @@
     transform: translateX(40%);
   }
 
-  &.active {
+  &.decorated {
     &::after {
+      display: block;
       transform: translate(40%);
     }
   }

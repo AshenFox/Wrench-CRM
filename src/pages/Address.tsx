@@ -1,12 +1,15 @@
-import Loader from '../components/Loader';
+import { FC } from 'react';
 import Page from '../components/Page';
 import Header from '../components/Page/Header';
 import Info from '../components/Page/Info';
 import Searchbar from '../components/Searchbar';
 import SearchResults from '../components/SearchResults';
-import Status from '../components/Status';
 
-const Address = () => {
+interface OwnProps {}
+
+type Props = OwnProps;
+
+const Address: FC<Props> = () => {
   return (
     <Page>
       <Header>Поиск адресов</Header>
@@ -14,9 +17,6 @@ const Address = () => {
       <Searchbar />
 
       <SearchResults />
-
-      {/* <Loader />
-      <Status /> */}
     </Page>
   );
 };

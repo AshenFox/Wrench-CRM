@@ -7,7 +7,8 @@
 
   @media (max-width: $tablet) {
     position: fixed;
-    top: 8rem;
+    padding-top: 8rem;
+    top: 0;
     left: 0;
     transform: translateX(-125%);
     width: 100%;
@@ -33,7 +34,7 @@
     &.is-open {
       .menu__sub-arrow {
         svg {
-          transform: rotate(180deg);
+          transform: rotate(0deg);
         }
       }
 
@@ -122,7 +123,7 @@
       width: 13px;
       transform-origin: center;
       transition: all 0.3s ease-in-out;
-      transform: rotate(0deg);
+      transform: rotate(180deg);
     }
   }
 }
